@@ -4,17 +4,18 @@ import os
 
 BASE = os.path.dirname(__file__)
 
-# LOAD MODELS
+# ✅ Load model files safely
 df = pickle.load(open(os.path.join(BASE, "models/df.pkl"), "rb"))
 tfidf_matrix = pickle.load(open(os.path.join(BASE, "models/tfidf_matrix.pkl"), "rb"))
 indices = pickle.load(open(os.path.join(BASE, "models/indices.pkl"), "rb"))
 
-# normalize mapping
+# 🔹 Normalize title mapping
 def build_map(idx):
     return {str(k).lower(): int(v) for k, v in idx.items()}
 
 TITLE_MAP = build_map(indices)
 
+# 🎯 Recommendation function
 def recommend(title, top_n=10):
     title = title.lower()
 
